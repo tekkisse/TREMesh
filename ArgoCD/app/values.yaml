@@ -1,6 +1,23 @@
 # ------------------------------
 # NocoDB configuration
 # ------------------------------
+nocodb:
+  service:
+    type: ClusterIP
+
+  persistence:
+    enabled: true
+    size: 8Gi
+
+  # Admin login credentials
+  extraEnv:
+    - name: NC_ADMIN_EMAIL
+      value: "admin@tremesh.com"
+    - name: NC_ADMIN_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: nocodb-admin
+          key: password
 
 # ------------------------------
 # n8n configuration
