@@ -1,3 +1,6 @@
+# ------------------------------
+# NocoDB configuration
+# ------------------------------
 nocodb:
   service:
     type: ClusterIP
@@ -5,9 +8,36 @@ nocodb:
     enabled: true
     size: 8Gi
 
+# ------------------------------
+# n8n configuration
+# ------------------------------
 n8n:
   service:
     type: ClusterIP
   persistence:
     enabled: true
     size: 8Gi
+  # example: add environment vars if you later want SSO integration
+  extraEnv:
+    - name: WEBHOOK_URL
+      value: "https://n8n.example.com/"
+
+# ------------------------------
+# Keycloak configuration
+# ------------------------------
+keycloak:
+  auth:
+    adminUser: admin
+    adminPassword: admin123   # use a secret in production!
+  proxy: edge
+  service:
+    type: ClusterIP
+  production: false
+  persistence:
+    enabled: true
+    size: 8Gi
+  postgresql:
+    enabled: true
+    primary:
+      persistence:
+        size: 8Gi

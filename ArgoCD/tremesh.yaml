@@ -1,17 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: federated-tools
+  name: TREMesh
   namespace: argocd
 spec:
   project: default
   source:
-    repoURL: https://your.repo.or.git/url
-    path: charts/federated-tools
+    repoURL: https://github.com/tekkisse/TREMesh
+    path: ArgoCD/app
     targetRevision: main
   destination:
     server: https://kubernetes.default.svc
-    namespace: federated-tools
+    namespace: tremesh
   syncPolicy:
     automated:
       prune: true
