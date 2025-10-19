@@ -13,17 +13,7 @@ nocodb:
 # ------------------------------
 # n8n configuration
 # ------------------------------
-n8n:
-  service:
-    type: ClusterIP
 
-
-  # Persistence settings should be defined as follows
-  persistence:
-    enabled: true
-    size: 8Gi
-    accessMode: ReadWriteOnce
-    storageClass: ""
 
 
 # ------------------------------
