@@ -15,19 +15,19 @@ n8n:
   service:
     type: ClusterIP
 
-  # Environment variables must be an object (map), not a list
+  # Environment variables must be specified under 'extraEnvVars'
   extraEnvVars:
-    WEBHOOK_URL: "https://n8n.example.com/"
-    N8N_BASIC_AUTH_ACTIVE: "true"
-    N8N_BASIC_AUTH_USER: "user"
-    N8N_BASIC_AUTH_PASSWORD: "password"
+    - name: WEBHOOK_URL
+      value: "https://n8n.example.com/"
 
-  # For persistence, the chart expects a separate sub-object
-  persistenceEnabled: true   # boolean
-  persistenceSize: 8Gi       # string
-  persistenceStorageClass: "" # optional, leave blank for default storage class
+  # Persistence settings should be defined as follows
+  persistence:
+    enabled: true
+    size: 8Gi
+    accessMode: ReadWriteOnce
+    storageClass: ""
 
-  # config options must go under extraConfig (if supported)
+  # Configuration options go under 'extraConfig'
   extraConfig: |
     timezone = "Europe/London"
     executions.process = "main"
