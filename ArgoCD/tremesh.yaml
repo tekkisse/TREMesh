@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/tekkisse/TREMesh
+    repoURL: https://github.com/tekkisse/TREMesh.git
     path: ArgoCD/app
     targetRevision: main
   destination:
