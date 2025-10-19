@@ -9,19 +9,25 @@ nocodb:
     enabled: true
     size: 8Gi
 
-  # Admin login credentials
-  extraEnv:
-    - name: NC_ADMIN_EMAIL
-      value: "admin@tremesh.com"
-    - name: NC_ADMIN_PASSWORD
-      valueFrom:
-        secretKeyRef:
-          name: nocodb-admin
-          key: password
 
 # ------------------------------
 # n8n configuration
 # ------------------------------
+n8n:
+  service:
+    type: ClusterIP
+
+  # Environment variables must be specified under 'extraEnvVars'
+  extraEnvVars:
+    - name: WEBHOOK_URL
+      value: "https://n8n.example.com/"
+
+  # Persistence settings should be defined as follows
+  persistence:
+    enabled: true
+    size: 8Gi
+    accessMode: ReadWriteOnce
+    storageClass: ""
 
 
 # ------------------------------
