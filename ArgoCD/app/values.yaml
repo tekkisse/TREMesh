@@ -12,29 +12,26 @@ nocodb:
 # n8n configuration
 # ------------------------------
 n8n:
-  # top-level chart settings
   service:
     type: ClusterIP
 
-  # correct persistence block (the chart defines this)
-  persistence:
-    enabled: true
-    size: 8Gi
-    accessMode: ReadWriteOnce
-    storageClass: ""
-
-  # environment variables go under extraEnvVars (not extraEnv)
+  # Environment variables must be an object (map), not a list
   extraEnvVars:
-    - name: WEBHOOK_URL
-      value: "https://n8n.example.com/"
+    WEBHOOK_URL: "https://n8n.example.com/"
+    N8N_BASIC_AUTH_ACTIVE: "true"
+    N8N_BASIC_AUTH_USER: "user"
+    N8N_BASIC_AUTH_PASSWORD: "password"
 
-  # Example other options you can set safely:
-  config:
-    timezone: "Europe/London"
-    executions:
-      process: main
-    logs:
-      output: console
+  # For persistence, the chart expects a separate sub-object
+  persistenceEnabled: true   # boolean
+  persistenceSize: 8Gi       # string
+  persistenceStorageClass: "" # optional, leave blank for default storage class
+
+  # config options must go under extraConfig (if supported)
+  extraConfig: |
+    timezone = "Europe/London"
+    executions.process = "main"
+    logs.output = "console"
 
 # ------------------------------
 # Keycloak configuration
