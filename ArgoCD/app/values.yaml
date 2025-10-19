@@ -1,13 +1,7 @@
 # ------------------------------
 # NocoDB configuration
 # ------------------------------
-nocodb:
-  service:
-    type: ClusterIP
 
-  persistence:
-    enabled: true
-    size: 8Gi
 
 
 # ------------------------------
