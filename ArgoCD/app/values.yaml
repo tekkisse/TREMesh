@@ -12,15 +12,29 @@ nocodb:
 # n8n configuration
 # ------------------------------
 n8n:
+  # top-level chart settings
   service:
     type: ClusterIP
+
+  # correct persistence block (the chart defines this)
   persistence:
     enabled: true
     size: 8Gi
-  # example: add environment vars if you later want SSO integration
-  extraEnv:
+    accessMode: ReadWriteOnce
+    storageClass: ""
+
+  # environment variables go under extraEnvVars (not extraEnv)
+  extraEnvVars:
     - name: WEBHOOK_URL
       value: "https://n8n.example.com/"
+
+  # Example other options you can set safely:
+  config:
+    timezone: "Europe/London"
+    executions:
+      process: main
+    logs:
+      output: console
 
 # ------------------------------
 # Keycloak configuration
