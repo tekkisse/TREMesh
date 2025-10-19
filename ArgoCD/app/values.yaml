@@ -1,0 +1,13 @@
+nocodb:
+  service:
+    type: ClusterIP
+  persistence:
+    enabled: true
+    size: 8Gi
+
+n8n:
+  service:
+    type: ClusterIP
+  persistence:
+    enabled: true
+    size: 8Gi

@@ -1,0 +1,13 @@
+apiVersion: v2
+name: federated-tools
+description: Combined NocoDB + n8n deployment
+type: application
+version: 0.1.0
+
+dependencies:
+  - name: nocodb
+    version: "1.4.0"
+    repository: "https://zekker6.github.io/helm-charts/"
+  - name: n8n
+    version: "1.15.16"
+    repository: "https://community-charts.github.io/helm-charts"

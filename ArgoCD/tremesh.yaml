@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: federated-tools
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://your.repo.or.git/url
+    path: charts/federated-tools
+    targetRevision: main
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: federated-tools
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
